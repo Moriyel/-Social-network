@@ -10,19 +10,8 @@
  /*grid-gap: 10px;*/
 }
 
-.header {
-  grid-area: h;
-  background-color: limegreen;
-}
-.header img {
-  width: 20px;
-
-}
-.nav {
-  grid-area: n;
-  background-color: magenta;
-}
-.content{
+.app-wrapper-content {
   grid-area: c;
   background-color: mediumblue;
 }
+

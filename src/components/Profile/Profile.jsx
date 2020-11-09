@@ -1,28 +1,16 @@
-
+import MyPosts from './MyPosts/MyPosts';
+import a from './Profile.module.css';
 
 const Profile = () => {
   return   (  
-  <div className= 'content'>
+  <div>
   <div>
       <img src = 'https://nashaplaneta.net/articles/images/xindonesia-alishha-2.jpg.pagespeed.ic.SvTFiGyI68.jpg' />
   </div>
   <div>
       ava +
   </div>
-  <div>
-    my posts
-      <div>
-        New posts
-      </div>
-      <div>
-        <div>
-          post1
-        </div>
-        <div>
-          post2
-        </div>
-      </div>
-  </div>
+  <MyPosts />
 </div> 
   );
 }
