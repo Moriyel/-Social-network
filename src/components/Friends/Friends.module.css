@@ -1,0 +1,17 @@
+.h {
+  color: yellow;
+ 
+  font-style: unset;
+}
+.rowFreinds {
+  display: grid;
+  grid-template-columns: 3em 3em 3em;
+  grid-gap: 10px;
+}
+.avatar {
+  width: 3em;
+  height: 3em;
+  border: 2px solid rgb(0, 204, 255);
+  border-radius: 50%;
+  background-color: yellow;
+}
