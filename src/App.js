@@ -23,7 +23,15 @@ function App(props) {
             <div className='app-wrapper-content'>
                 <Route path = '/dialogs' render = { () => <Dialogs dialogs = {props.appState.dialogs} 
                 messages = {props.appState.messages} />} />
-                <Route path = '/profile' render = { () => <Profile posts = {props.appState.posts} addPost = {props.addPost} />} />
+
+
+                <Route path = '/profile' render = { () => <Profile posts = {props.appState.posts} 
+                addPost = {props.addPost}
+                updateNewPostText = {props.updateNewPostText}
+                newPostText = {props.appState.newPostText}
+                 />} />
+
+
                 <Route path = '/news' component = {News} />
                 <Route path = '/music' component = {Music} />
                 <Route path = '/settings' component = {Settings} />
