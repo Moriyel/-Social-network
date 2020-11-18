@@ -1,44 +1,58 @@
-let  rerenderEntireTree = () => {
-  console.log("fff");
-}
-
-let state = {
-    posts: [
+let store = {
+        _state: {
+            posts: [
             { id : 1, message: "Hi, how are you?", likesCount: 12},
             { id : 2, message: "All write", likesCount: 10},
-          ],
-    newPostText: "figase",
-    dialogs: [
+              ],
+              
+            newPostText: "figase",
+            dialogs: [
               { id : 1, name: "Dimych"},
               { id : 2, name: "Saha"},
               { id : 3, name: "Milka"},
               { id : 4, name: "lera"}
             ],
-    messages: [
+            messages: [
                 { id : 1, message: "Hi"},
                 { id : 2, message: "How are you"},
                 { id : 3, message: "Hi"},
                 { id : 4, message: "Ok"}   
               ]
-}
-export const updateNewPostText = (newText) => {
- 
-  state.newPostText = newText;
-  rerenderEntireTree(state);
+            },
+            getState() {
+              return this._state;
+            },
+        _callSubscriber() {
+              console.log("fff");
+            },
+        subscribe(observer) {
+              this._callSubscriber = observer;
+            },
+            dispatch(action) {
+              if (action.type === 'ADD-POST') {
+                  let newPost = {
+                    id: 5,
+                    message: this._state.newPostText,
+                    likesCount: 0
+                  };
+                  this._state.posts.push(newPost); 
+                  this._state.newPostText = "";
+                  this._callSubscriber(this._state);
+              } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+                  this._state.newPostText = action.newText;
+                  this._callSubscriber(this._state);
+              }
+
+            }
+
 }
 
-export const addPost = () => {
-  let newPost = {
-    id: 5,
-    message: state.newPostText,
-    likesCount: 0
-  };
-  state.posts.push(newPost);
-  state.newPostText = "";
-  rerenderEntireTree(state);
-}
-export const subscribe = (observer) => {
-  rerenderEntireTree = observer;
-}
 
-export default state;
+
+
+
+
+
+
+export default store;
+window.store = store;
