@@ -11,6 +11,14 @@ const Dialogs = (props) => {
 
       let messagesElements = props.messages
         .map(m => <Message message = {m.message} id={m.id} />)
+      let newMessageBody = props.newMessageBody;
+      let onSendMessageClick = () => {
+        props.dispatch({type: 'SEND-MESSAGE'})
+      } 
+      let onNewMessageChange = (event) => {
+        let body = event.target.value;
+          props.dispatch({type: 'UPDATE-NEW-MESSAGE-BODY', body: body})
+      } 
 
   return     (
     <div className = {s.dialogs}>
@@ -22,7 +30,13 @@ const Dialogs = (props) => {
       </div>
 
       <div className = {s.messages}>
-          {messagesElements}
+          <div>{messagesElements}</div>
+          <div>
+              <div><textarea value = {newMessageBody}
+                onChange = {onNewMessageChange}
+                placeholder = 'Enter your message' /></div>
+              <div><button onClick = {onSendMessageClick}>Send</button></div>
+          </div>
      
       </div>
 

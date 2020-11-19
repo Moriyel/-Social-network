@@ -22,7 +22,10 @@ function App(props) {
             <Navbar />
             <div className='app-wrapper-content'>
                 <Route path = '/dialogs' render = { () => <Dialogs dialogs = {props.appState.dialogs} 
-                messages = {props.appState.messages} />} />
+                messages = {props.appState.messages}
+                newMessageBody = {props.appState.newMessageBody}
+                dispatch = {props.dispatch}
+                 />} />
 
 
                 <Route path = '/profile' render = { () => <Profile posts = {props.appState.posts} 
