@@ -21,17 +21,17 @@ function App(props) {
             <Header />
             <Navbar />
             <div className='app-wrapper-content'>
-                <Route path = '/dialogs' render = { () => <Dialogs dialogs = {props.appState.dialogs} 
-                messages = {props.appState.messages}
-                newMessageBody = {props.appState.newMessageBody}
+                <Route path = '/dialogs' render = { () => <Dialogs dialogs = {props.appState.allMessages.dialogs} 
+                messages = {props.appState.allMessages.messages}
+                newMessageBody = {props.appState.allMessages.newMessageBody}
                 dispatch = {props.dispatch}
                  />} />
 
 
-                <Route path = '/profile' render = { () => <Profile posts = {props.appState.posts} 
+                <Route path = '/profile' render = { () => <Profile posts = {props.appState.allPosts.posts} 
                 dispatch = {props.dispatch}
                 
-                newPostText = {props.appState.newPostText}
+                newPostText = {props.appState.allPosts.newPostText}
                  />} />
 
 

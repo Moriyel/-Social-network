@@ -1,3 +1,6 @@
+import messageReducer from "./message-reducer";
+import postReducer from "./profile-reducer";
+
 let store = {
         _state: {
             posts: [
@@ -31,27 +34,9 @@ let store = {
               this._callSubscriber = observer;
             },
             dispatch(action) {
-              if (action.type === 'ADD-POST') {
-                  let newPost = {
-                    id: 5,
-                    message: this._state.newPostText,
-                    likesCount: 0
-                  };
-                  this._state.posts.push(newPost); 
-                  this._state.newPostText = "";
-                  this._callSubscriber(this._state);
-              } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-                  this._state.newPostText = action.newText;
-                  this._callSubscriber(this._state);
-              } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY'){
-                this._state.newMessageBody = action.body;
-                this._callSubscriber(this._state);
-              } else if (action.type === 'SEND-MESSAGE'){
-                let body = this._state.newMessageBody;
-                this._state.newMessageBody = "";
-                this._state.messages.push({id : 4, message: body});
-                this._callSubscriber(this._state);
-              }
+              this._state = postReducer(this._state, action);
+              this._state = messageReducer(this._state, action);
+              this._callSubscriber(this._state);
 
             }
 
