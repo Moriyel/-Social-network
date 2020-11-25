@@ -13,11 +13,11 @@ const Dialogs = (props) => {
         .map(m => <Message message = {m.message} id={m.id} />)
       let newMessageBody = props.newMessageBody;
       let onSendMessageClick = () => {
-        props.dispatch({type: 'SEND-MESSAGE'})
+        props.onSendMessageClick();
       } 
       let onNewMessageChange = (event) => {
         let body = event.target.value;
-          props.dispatch({type: 'UPDATE-NEW-MESSAGE-BODY', body: body})
+          props.onNewMessageChange(body);
       } 
 
   return     (
