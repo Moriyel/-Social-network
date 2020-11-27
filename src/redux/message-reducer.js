@@ -25,5 +25,6 @@ const messageReducer = (state = initialState, action) => {
           state.messages.push({id : 4, message: body});
       }
       return state;
+      
 }
 export default messageReducer;

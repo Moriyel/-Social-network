@@ -23,25 +23,26 @@ function App(props) {
             <Navbar />
             <div className='app-wrapper-content'>
                 <Route path = '/dialogs' render = { () => <DialogsContainer 
-                dialogs = {props.appState.allMessages.dialogs} 
+                /*dialogs = {props.appState.allMessages.dialogs} 
                 messages = {props.appState.allMessages.messages}
                 newMessageBody = {props.appState.allMessages.newMessageBody}
-                dispatch = {props.dispatch}
+                dispatch = {props.dispatch}*/
                  />} />
 
 
-                <Route path = '/profile' render = { () => <Profile posts = {props.appState.allPosts.posts} 
+                <Route path = '/profile' render = { () => <Profile /*posts = {props.store.allPosts.posts} 
                 dispatch = {props.dispatch}
                 
-                newPostText = {props.appState.allPosts.newPostText}
+                newPostText = {props.appState.allPosts.newPostText}*/
                  />} />
 
 
                 <Route path = '/news' component = {News} />
                 <Route path = '/music' component = {Music} />
                 <Route path = '/settings' component = {Settings} />
-  <Route path = '/friends' render = {() => <Friends dialogs = {props.appState.dialogs}  
-                messages = {props.appState.messages} />} />
+  <Route path = '/friends' render = {() => <Friends 
+                /*dialogs = {props.appState.dialogs}  
+                messages = {props.appState.messages}*/ />} />
             </div> 
      
         </div>

@@ -1,10 +1,11 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
 import MyPosts from './MyPosts';
 
 
 
-
+/*
 const MyPostsContainer = (props) => {
 
 
@@ -24,6 +25,24 @@ const MyPostsContainer = (props) => {
             newPostText = {props.newPostText} />
   );
 }
+*/
+let f1 = (state) => {
+    return {
+            posts: state.allPost.posts,
+            newPostText: state.allPost.newPostText
+    }
+}
+let f2 = (dispatch) => {
+    return {
+        addPost: ()=> {
+            dispatch({type: 'ADD-POST'});
+        },
+        onPostChange: (text) => {
+            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+        }
+    }
+}
+const MyPostsContainer = connect(f1, f2)(MyPosts);
 
 
 export default MyPostsContainer;

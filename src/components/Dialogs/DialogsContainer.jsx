@@ -1,28 +1,30 @@
 
-import DialogItem from './DialogItem/DialogItem';
+import { connect } from 'react-redux';
 import Dialogs from './Dialogs';
 import s from './Dialogs.module.css';
-import Message from './Message/Messaje';
 
 
-const DialogsContainer = (props) => {
 
-      let onSendMessageClick = () => {
-        props.dispatch({type: 'SEND-MESSAGE'})
-      } 
-      let onNewMessageChange = (body) => {
-          props.dispatch({type: 'UPDATE-NEW-MESSAGE-BODY', body: body})
-      } 
 
-  return     (
-    <Dialogs dialogs= {props.dialogs}
-             messages = {props.messages}
-             newMessageBody = {props.newMessageBody}
-             onSendMessageClick = {onSendMessageClick}
-             onNewMessageChange = {onNewMessageChange}
-     />
-  );
+let f1 = (state) => {
+     return  {
+              dialogs: state.allMessages.dialogs,
+              messages: state.allMessages.messages,
+              newMessageBody: state.allMessages.newMessageBody
+              }
 }
+let f2 = (dispatch) => {
+ 
+          return {
+            onSendMessageClick: () => {
+              dispatch({type: 'SEND-MESSAGE'});
+            },
+            onNewMessageChange: (body) => {
+              dispatch({type: 'UPDATE-NEW-MESSAGE-BODY', body: body});
+            }
+          }
 
+}
+const DialogsContainer = connect(f1, f2)(Dialogs);
 
 export default DialogsContainer;
