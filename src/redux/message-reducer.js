@@ -18,13 +18,19 @@ let initialState = {
 
 const messageReducer = (state = initialState, action) => {
       if (action.type === 'UPDATE-NEW-MESSAGE-BODY'){
-          state.newMessageBody = action.body;
+        let stateCopy = {...state};
+          stateCopy.newMessageBody = action.body;
+          return stateCopy;
       } else if (action.type === 'SEND-MESSAGE'){
-            let body = state.newMessageBody;
-          state.newMessageBody = "";
-          state.messages.push({id : 4, message: body});
+            let stateCopy = {...state};
+            
+            let body = stateCopy.newMessageBody;    
+          stateCopy.newMessageBody = "";
+          //stateCopy.messages = [...state.messages];
+          stateCopy.messages.push({id : 4, message: body});
+          return stateCopy;
       }
       return state;
-      
+
 }
 export default messageReducer;

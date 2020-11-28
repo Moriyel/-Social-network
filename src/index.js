@@ -29,28 +29,14 @@ rerenderEntireTree();
   
 */
 
-
-
-
-
-
-let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <Provider store = {store} /*appState = {state} dispatch = {store.dispatch.bind(store)}*/>
+      <Provider store = {store}>
         <React.StrictMode>
           <App />
         </React.StrictMode>
       </Provider>
-    </BrowserRouter>,
-    document.getElementById('root')
-  );
-}
-rerenderEntireTree();
-
-store.subscribe( () => {
-  rerenderEntireTree();
-});
+    </BrowserRouter>, document.getElementById('root'));
 
 
 // If you want to start measuring performance in your app, pass a function

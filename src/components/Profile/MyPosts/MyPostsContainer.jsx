@@ -28,8 +28,8 @@ const MyPostsContainer = (props) => {
 */
 let f1 = (state) => {
     return {
-            posts: state.allPost.posts,
-            newPostText: state.allPost.newPostText
+            posts: state.allPosts.posts,
+            newPostText: state.allPosts.newPostText
     }
 }
 let f2 = (dispatch) => {
