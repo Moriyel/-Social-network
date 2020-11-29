@@ -11,7 +11,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Setting/Settings';
 import Friends from './components/Friends/Friends';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import Users from './components/Users/Users';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 
@@ -45,7 +45,7 @@ function App(props) {
                 /*dialogs = {props.appState.dialogs}  
                 messages = {props.appState.messages}*/ />} />
                 <Route path = '/users' 
-                render = { () => <Users /> } />
+                render = { () => <UsersContainer /> } />
             </div> 
      
         </div>

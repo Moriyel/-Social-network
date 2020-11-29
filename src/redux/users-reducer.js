@@ -1,13 +1,13 @@
 
 let initialState = {
   users: [
-    { id : 1, followed: false, fullName: "Alex", status: "Hi, how are you?", location: {
+    { id : 1, photoUrl: 'https://i.pinimg.com/736x/a1/7a/cf/a17acf694b5dc3a221df5b4275e5da41.jpg', followed: false, fullName: "Alex", status: "Hi, how are you?", location: {
       city: "Moscow", country: "Russia"
     } },
-    { id : 2, followed: true, fullName: "Nina", status: "Hi, how are you?", location: {
+    { id : 2, photoUrl: 'https://i.pinimg.com/736x/a1/7a/cf/a17acf694b5dc3a221df5b4275e5da41.jpg', followed: true, fullName: "Nina", status: "Hi, how are you?", location: {
       city: "Moscow", country: "Belarus"
     } },
-    { id : 3, followed: false, fullName: "Mari", status: "Hi, how are you?", location: {
+    { id : 3, photoUrl: 'https://i.pinimg.com/736x/a1/7a/cf/a17acf694b5dc3a221df5b4275e5da41.jpg', followed: false, fullName: "Mari", status: "Hi, how are you?", location: {
       city: "Sidney", country: "USA"
     } }
       ]
@@ -18,25 +18,32 @@ let initialState = {
 
 const usersReducer = (state = initialState, action)=>{
   switch (action.type) {
-    case 'FOLLOW': {
-    let newPost = {
-      id: 5,
-      message: state.newPostText,
-      likesCount: 0
-    };
-    let stateCopy = {...state};
-    stateCopy.posts = [...state.posts];
-    stateCopy.posts.push(newPost); 
-    stateCopy.newPostText = "";
-    return stateCopy;
-  }
-    case 'UPDATE-NEW-POST-TEXT': {
-      let stateCopy = {...state};
-    stateCopy.newPostText = action.newText;
-    return stateCopy;
-    }
-  default:
-  return state;
+    case 'FOLLOW': 
+                return {
+                    ...state, 
+                    users: state.users.map(u => {
+                        if (u.id === action.userId) {
+                            return {...u, followed: true}
+                        }
+                        return u;
+                    })
+                }; 
+  
+    case 'UNFOLLOW': 
+          return  {
+            ...state, 
+            users: state.users.map(u => {
+                if (u.id === action.userId) {
+                    return {...u, followed: false}
+                }
+                return u;
+            })
+          };
+          case 'SET_USERS': {
+            return { ...state, users: [...state.users, ...action.users]}
+          }
+          default:
+            return state;
   }
 }
 

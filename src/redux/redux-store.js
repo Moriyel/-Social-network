@@ -1,11 +1,13 @@
 import messageReducer from "./message-reducer";
 import postReducer from "./profile-reducer";
+import usersReducer from "./users-reducer";
 
 const { createStore, combineReducers } = require("redux");
 
 let reducers = combineReducers({
   allPosts: postReducer,
-  allMessages: messageReducer
+  allMessages: messageReducer,
+  allUsers: usersReducer
   
 });
 
