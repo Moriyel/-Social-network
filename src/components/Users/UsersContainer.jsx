@@ -28,7 +28,10 @@ const MyPostsContainer = (props) => {
 */
 let f1 = (state) => {
     return {
-            users: state.allUsers.users
+            users: state.allUsers.users,
+            pageSize: state.allUsers.pageSize,
+            totalUsersCount: state.allUsers.totalUsersCount,
+            currentPage: state.allUsers.currentPage
     }
 }
 let f2 = (dispatch) => {
@@ -41,6 +44,12 @@ let f2 = (dispatch) => {
         },
         setUsers: (users)=> {
             dispatch({type: 'SET_USERS', users: users});
+        },
+        setCurrentPage: (currentPage)=> {
+            dispatch({type: 'SET_CURRENT_PAGE', currentPage: currentPage})
+        },
+        setTotalUsersCount: (totalUsersCount)=> {
+            dispatch({type: 'SET_TOTAL_USERS_COUNT', totalUsersCount: totalUsersCount})
         }
     }
 }
