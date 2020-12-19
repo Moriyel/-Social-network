@@ -1,4 +1,8 @@
 import { Switch } from "react-router-dom";
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+
+
+
 
 let initialState = {
   posts: [
@@ -7,6 +11,7 @@ let initialState = {
       ],
       
     newPostText: "figase",
+    profile: null
 };
 
 
@@ -31,9 +36,17 @@ const postReducer = (state = initialState, action)=>{
     stateCopy.newPostText = action.newText;
     return stateCopy;
     }
+    case 'SET_USER_PROFILE': {
+      return {...state, profile: action.profile}
+
+    }
   default:
   return state;
   }
 }
+
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
 
 export default postReducer;
