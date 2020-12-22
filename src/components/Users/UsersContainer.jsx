@@ -5,6 +5,8 @@ import Users from './Users';
 import * as axios from 'axios';
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/api';
+import {follow, unfollow, setCurrentPage, getUsersThunkCreator, toggleFollowingInProgress} from '../../redux/users-reducer';
+
 
 
 
@@ -33,24 +35,27 @@ class UsersAPI extends React.Component {
 
 
     componentDidMount () {
-      this.props.toggleIsFetching(true);
+      this.props.getUsers(this.props.currentPage, this.props.pageSize);
+      /*this.props.toggleIsFetching(true);
 
       usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
         this.props.toggleIsFetching(false);     
         this.props.setUsers(data.items);
         this.props.setTotalUsersCount(data.totalCount);
-      });  
+      });*/
     }
   
     onPageChanged = (pageNumber) => {
-      this.props.toggleIsFetching(true);
+      this.props.getUsers(pageNumber, this.props.pageSize);
+
+     /* this.props.toggleIsFetching(true);
       this.props.setCurrentPage(pageNumber);
 
       usersAPI.getUsers(pageNumber, this.props.pageSize)
       .then(data => { 
         this.props.toggleIsFetching(false);         
         this.props.setUsers(data.items)
-      });
+      });*/
     }
   
       render() {
@@ -64,7 +69,6 @@ class UsersAPI extends React.Component {
                     unfollow = {this.props.unfollow}
                     follow = {this.props.follow}
                     users = {this.props.users}
-                    toggleFollowingInProgress = {this.props.toggleFollowingInProgress}
                     followingInProgress = {this.props.followingInProgress}
 
                 />
@@ -84,7 +88,7 @@ let f1 = (state) => {
             followingInProgress: state.allUsers.followingInProgress
     }
 }
-let f2 = (dispatch) => {
+/*let f2 = (dispatch) => {
     return {
         follow: (userId)=> {
             dispatch({type: 'FOLLOW', userId: userId});
@@ -104,13 +108,15 @@ let f2 = (dispatch) => {
         toggleIsFetching: (isFetching) => {
             dispatch({type: 'TOGGLE_IS_FETCHING', isFetching: isFetching})
         },
+        
         toggleFollowingInProgress: (isFetching, userId) => {
           dispatch({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching: isFetching, userId:userId})
-      }
+        },
+        getUsersThunkCreator: getUsersThunkCreator 
 
     }
-}
-const UsersContainer = connect(f1, f2)(UsersAPI);
+}*/
+const UsersContainer = connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress})(UsersAPI);
 
 
 export default UsersContainer;
