@@ -6,6 +6,7 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 
 import {follow, unfollow, setCurrentPage, getUsersThunkCreator, toggleFollowingInProgress} from '../../redux/users-reducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
 
 
@@ -116,7 +117,9 @@ let f1 = (state) => {
 
     }
 }*/
-const UsersContainer = connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress})(UsersAPI);
+
+let withRedirect = withAuthRedirect(UsersAPI)
+const UsersContainer = connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress})(withRedirect);
 
 
 export default UsersContainer;
