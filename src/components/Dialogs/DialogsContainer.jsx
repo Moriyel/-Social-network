@@ -10,7 +10,8 @@ let f1 = (state) => {
      return  {
               dialogs: state.allMessages.dialogs,
               messages: state.allMessages.messages,
-              newMessageBody: state.allMessages.newMessageBody
+              newMessageBody: state.allMessages.newMessageBody,
+              isAuth: state.auth.isAuth
               }
 }
 let f2 = (dispatch) => {

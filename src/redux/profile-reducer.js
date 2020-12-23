@@ -1,4 +1,5 @@
 import { Switch } from "react-router-dom";
+import { usersAPI } from "../api/api";
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
@@ -47,6 +48,12 @@ const postReducer = (state = initialState, action)=>{
 
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const getUserProfile = (userId) => (dispatch) => {
+  usersAPI.getProfile(userId)
+      .then(response => {  
+          dispatch(setUserProfile(response.data));
+      });
+}
 
 
 export default postReducer;

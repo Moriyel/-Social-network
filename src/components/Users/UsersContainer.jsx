@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import * as axios from 'axios';
+
 import Preloader from '../common/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
+
 import {follow, unfollow, setCurrentPage, getUsersThunkCreator, toggleFollowingInProgress} from '../../redux/users-reducer';
 
 
