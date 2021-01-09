@@ -34,11 +34,8 @@ let f1 = (state) => {
 }
 let f2 = (dispatch) => {
     return {
-        addPost: ()=> {
-            dispatch({type: 'ADD-POST'});
-        },
-        onPostChange: (text) => {
-            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+        addPost: (newPostText)=> {
+            dispatch({type: 'ADD-POST', newPostText});
         }
     }
 }

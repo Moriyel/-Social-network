@@ -12,8 +12,6 @@ let initialState = {
     { id : 1, message: "Hi, how are you?", likesCount: 12},
     { id : 2, message: "All write", likesCount: 10},
       ],
-      
-    newPostText: "figase",
     profile: null,
     status: ''
 };
@@ -26,7 +24,7 @@ const postReducer = (state = initialState, action)=>{
     case 'ADD-POST': {
     let newPost = {
       id: 5,
-      message: state.newPostText,
+      message: action.newPostText,
       likesCount: 0
     };
     let stateCopy = {...state};
@@ -35,11 +33,7 @@ const postReducer = (state = initialState, action)=>{
     stateCopy.newPostText = "";
     return stateCopy;
   }
-    case 'UPDATE-NEW-POST-TEXT': {
-      let stateCopy = {...state};
-    stateCopy.newPostText = action.newText;
-    return stateCopy;
-    }
+
     case SET_STATUS: {
       return {...state, status: action.status}
 

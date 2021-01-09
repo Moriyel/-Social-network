@@ -19,11 +19,8 @@ let f1 = (state) => {
 let f2 = (dispatch) => {
  
           return {
-            onSendMessageClick: () => {
-              dispatch({type: 'SEND-MESSAGE'});
-            },
-            onNewMessageChange: (body) => {
-              dispatch({type: 'UPDATE-NEW-MESSAGE-BODY', body: body});
+            onSendMessageClick: (newMessageBody) => {
+              dispatch({type: 'SEND-MESSAGE', newMessageBody});
             }
           }
 
