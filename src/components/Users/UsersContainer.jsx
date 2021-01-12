@@ -123,6 +123,6 @@ let f1 = (state) => {
 
 
 export default compose (
-  connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress}),
-  withAuthRedirect  
+  connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress})
+  
 )(UsersAPI);
