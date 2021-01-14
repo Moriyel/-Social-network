@@ -7,9 +7,11 @@ import { Textarea } from '../../common/FormsControls/FormsControls';
 
 const maxLength10  = maxLengthCreator(10);
 
-const MyPosts = (props) => {
+//Классовые компоненты при помощи PureComponent или shouldComponentUpdate могут останавливать рендеринг, если пропсы не изменились. Теперь это доступно и в функциональных компонентах, если обернуть их в React.memo.
 
-
+const MyPosts = React.memo((props) => {
+/* повторный рендер пройдёт только при изменении пропсов */
+console.log('render')
       let postsElements = props.posts.map( p => <Post message = {p.message} like = {p.likesCount} />);
 
       let newPostElement = React.createRef();
@@ -28,7 +30,7 @@ const MyPosts = (props) => {
   </div>
 
   );
-}
+})
 
 const AddNewPostForm = (props) => {
     return (

@@ -8,53 +8,17 @@ import { getUser, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching
 
 
 
-
-/*
-const MyPostsContainer = (props) => {
-
-
-      let addPost = () => {
-          props.dispatch({type: 'ADD-POST'});
-         
-      }
-      let onPostChange = (text)=> {
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
-      }
-
-
-  return   (  
-   <MyPosts addPost = {addPost} 
-            onPostChange = {onPostChange}
-            posts = {props.posts}
-            newPostText = {props.newPostText} />
-  );
-}
-*/
 class UsersAPI extends React.Component {
 
 
     componentDidMount () {
       this.props.getUsers(this.props.currentPage, this.props.pageSize);
-      /*this.props.toggleIsFetching(true);
 
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-        this.props.toggleIsFetching(false);     
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-      });*/
     }
   
     onPageChanged = (pageNumber) => {
       this.props.getUsers(pageNumber, this.props.pageSize);
 
-     /* this.props.toggleIsFetching(true);
-      this.props.setCurrentPage(pageNumber);
-
-      usersAPI.getUsers(pageNumber, this.props.pageSize)
-      .then(data => { 
-        this.props.toggleIsFetching(false);         
-        this.props.setUsers(data.items)
-      });*/
     }
   
       render() {
@@ -77,16 +41,7 @@ class UsersAPI extends React.Component {
   }
 
 
-/*let f1 = (state) => {
-    return {
-            users: state.allUsers.users,
-            pageSize: state.allUsers.pageSize,
-            totalUsersCount: state.allUsers.totalUsersCount,
-            currentPage: state.allUsers.currentPage,
-            isFetching: state.allUsers.isFetching,
-            followingInProgress: state.allUsers.followingInProgress
-    }
-}*/
+
 
 let f1 = (state) => {
   return {
@@ -98,34 +53,6 @@ let f1 = (state) => {
           followingInProgress: getFollowingInProgress(state)
   }
 }
-/*let f2 = (dispatch) => {
-    return {
-        follow: (userId)=> {
-            dispatch({type: 'FOLLOW', userId: userId});
-        },
-        unfollow: (userId)=> {
-            dispatch({type: 'UNFOLLOW', userId: userId});
-        },
-        setUsers: (users)=> {
-            dispatch({type: 'SET_USERS', users: users});
-        },
-        setCurrentPage: (currentPage)=> {
-            dispatch({type: 'SET_CURRENT_PAGE', currentPage: currentPage})
-        },
-        setTotalUsersCount: (totalUsersCount)=> {
-            dispatch({type: 'SET_TOTAL_USERS_COUNT', totalUsersCount: totalUsersCount})
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch({type: 'TOGGLE_IS_FETCHING', isFetching: isFetching})
-        },
-        
-        toggleFollowingInProgress: (isFetching, userId) => {
-          dispatch({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching: isFetching, userId:userId})
-        },
-        getUsersThunkCreator: getUsersThunkCreator 
-
-    }
-}*/
 
 
 
