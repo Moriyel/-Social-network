@@ -1,4 +1,3 @@
-import { Switch } from "react-router-dom";
 import { profileAPI, usersAPI } from "../api/api";
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
