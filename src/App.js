@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Route, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Setting/Settings';
@@ -34,6 +34,8 @@ class App extends Component {
             <HeaderContainer />
             <Navbar />
             <div className='app-wrapper-content'>
+              <Switch>
+            <Route exact path = '/' render = { () => <Redirect to={'/profile'} />} />
                 <Route path = '/dialogs' render = { () => <DialogsContainer 
                 /*dialogs = {props.appState.allMessages.dialogs} 
                 messages = {props.appState.allMessages.messages}
@@ -58,6 +60,7 @@ class App extends Component {
                 messages = {props.appState.messages}*/ />} />
                 <Route path = '/users' 
                 render = { () => <UsersContainer /> } />
+                </Switch>
             </div> 
      
         </div>
