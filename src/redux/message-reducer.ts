@@ -28,6 +28,8 @@ let initialState = {
   
 };
 
+//перемещаю в гитигнор папку тест
+
 
 const messageReducer = (state = initialState, action: any): InitialStateType => {
  if (action.type === 'SEND-MESSAGE'){
