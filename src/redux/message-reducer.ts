@@ -28,7 +28,7 @@ let initialState = {
   
 };
 
-//перемещаю в гитигнор папку тест
+//перемещаю в гитигнор папку тест 2
 
 
 const messageReducer = (state = initialState, action: any): InitialStateType => {
