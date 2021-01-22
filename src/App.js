@@ -59,7 +59,7 @@ class App extends Component {
                 /*dialogs = {props.appState.dialogs}  
                 messages = {props.appState.messages}*/ />} />
                 <Route path = '/users' 
-                render = { () => <UsersContainer /> } />
+                render = { () => <UsersContainer pageTitle={"Title"}/> } />
                 </Switch>
             </div> 
      

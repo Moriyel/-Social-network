@@ -5,10 +5,36 @@ import Preloader from '../common/Preloader/Preloader';
 import {follow, unfollow, setCurrentPage, getUsersThunkCreator, toggleFollowingInProgress} from '../../redux/users-reducer';
 import { compose } from 'redux';
 import { getUser, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/users-selectors';
+import { UsersType } from '../../types/types';
+import { AppStateType } from '../../redux/redux-store';
 
 
+type MapStatePropsType = {
+  currentPage: number
+  pageSize: number
+  isFetching: boolean
+  totalUsersCount: number
+  users: Array<UsersType>
+  followingInProgress: Array<number>
+}
 
-class UsersAPI extends React.Component {
+type MapDispatchPropsType = {
+  getUsers: (currentPage: number, pageSize: number)=> void
+  unfollow: (userId: number)=> void
+  follow: (userId: number)=> void
+  toggleFollowingInProgress: (isFetching: boolean, userId: number)=> void
+  setCurrentPage: (currentPage: number)=> void
+
+}
+
+type OwnPropsType = {
+  pageTitle: string
+
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class UsersContainer extends React.Component<PropsType> {
 
 
     componentDidMount () {
@@ -16,13 +42,14 @@ class UsersAPI extends React.Component {
 
     }
   
-    onPageChanged = (pageNumber) => {
+    onPageChanged = (pageNumber: number) => {
       this.props.getUsers(pageNumber, this.props.pageSize);
 
     }
   
       render() {
         return <>
+            <h2>{this.props.pageTitle}</h2>
             {this.props.isFetching ? <Preloader /> : null }
            <Users 
                     totalUsersCount = {this.props.totalUsersCount}
@@ -43,7 +70,7 @@ class UsersAPI extends React.Component {
 
 
 
-let f1 = (state) => {
+let f1 = (state: AppStateType): MapStatePropsType => {
   return {
           users: getUser(state),
           pageSize: getPageSize(state),
@@ -58,6 +85,5 @@ let f1 = (state) => {
 
 
 export default compose (
-  connect(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress})
-  
-)(UsersAPI);
+  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress })
+)(UsersContainer);

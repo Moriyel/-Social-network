@@ -8,7 +8,7 @@ import {reducer as formReducer} from 'redux-form';
 import appReducer from "./app-reducer";
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
   allPosts: postReducer,
   allMessages: messageReducer,
   allUsers: usersReducer,
@@ -18,6 +18,12 @@ let reducers = combineReducers({
   
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+type RootReducerType = typeof rootReducer 
+export type AppStateType = ReturnType<RootReducerType>
+
+
+
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+//@ts-ignore
 window.store = store;
 export default store;
