@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import {follow, unfollow, setCurrentPage, getUsersThunkCreator, toggleFollowingInProgress} from '../../redux/users-reducer';
+import {follow, unfollow, getUsersThunkCreator, actions.toggleFollowingInProgress, actions.setCurrentPage} from '../../redux/users-reducer';
 import { compose } from 'redux';
 import { getUser, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/users-selectors';
 import { UsersType } from '../../types/types';
@@ -70,7 +70,7 @@ class UsersContainer extends React.Component<PropsType> {
 
 
 
-let f1 = (state: AppStateType): MapStatePropsType => {
+let MapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
           users: getUser(state),
           pageSize: getPageSize(state),
@@ -85,5 +85,5 @@ let f1 = (state: AppStateType): MapStatePropsType => {
 
 
 export default compose (
-  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(f1,  {follow, unfollow, setCurrentPage, getUsers: getUsersThunkCreator, toggleFollowingInProgress })
+  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(MapStateToProps,  {follow, unfollow, actions, getUsers: getUsersThunkCreator})
 )(UsersContainer);

@@ -8,6 +8,9 @@ const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 
 
+
+
+
 let initialState = {
   userId: null as number | null,
   email: null as string | null,
